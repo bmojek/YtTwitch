@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -7,6 +6,9 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
+using System.Runtime.CompilerServices;
+using System.Diagnostics;
+using NReco.VideoConverter;
 using System.Net;
 
 List<string> ListaUrl = new List<string>();
@@ -47,7 +49,7 @@ static void DownloadUrls(List<string> listaUrl)
     driver.Close();
 }
 
-/*DownloadUrls(ListaUrl);
+DownloadUrls(ListaUrl);
 int i = 0;
 foreach (var x in ListaUrl)
 {
@@ -55,8 +57,23 @@ foreach (var x in ListaUrl)
     {
         using (var client = new WebClient())
         {
-            client.DownloadFile(x, $"clip{i++}.mp4");
+            client.DownloadFile(x, $"clip{i}.mp4");
             TempListaUrl.Add(x);
+
+            ChangeResolution($"clip{i}.mp4");
+            i++;
         }
     }
-}*/
+}
+
+static void ChangeResolution(string clipName)
+{
+    var ffmpeg = new NReco.VideoConverter.FFMpegConverter();
+    // PRZYCIECIE "-filter:v \"crop=9/16*ih:ih\""
+    var convertSettings = new NReco.VideoConverter.ConvertSettings()
+    {
+        CustomOutputArgs = "-vf \"scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:-1:-1:color=black\""
+    };
+    var x = new NReco.VideoConverter.FFMpegInput[1] { new NReco.VideoConverter.FFMpegInput(clipName) };
+    ffmpeg.ConvertMedia(x, $"Res{clipName}", "mp4", convertSettings);
+}
