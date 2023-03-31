@@ -16,61 +16,62 @@ List<string> ListaUrl = new List<string>();
 List<string> Title = new List<string>();
 List<string> StreamerName = new List<string>();
 
+
 List<string> TempListaUrl = new List<string>()
 {
+
     "https://clips-media-assets2.twitch.tv/1nIkfNbQ6GhHXhkKvDvlug/AT-cm%7C1nIkfNbQ6GhHXhkKvDvlug.mp4",
     "https://clips-media-assets2.twitch.tv/OVfA-WXzZUt7hR6gwShoyg/AT-cm%7COVfA-WXzZUt7hR6gwShoyg.mp4",
     "https://clips-media-assets2.twitch.tv/RKq3GRvAXr7rFAGx9XunVA/AT-cm%7CRKq3GRvAXr7rFAGx9XunVA.mp4",
-    "https://clips-media-assets2.twitch.tv/GUvuj33j0iuEYAUWvjppkQ/39442963445-offset-25164.mp4",
-    "https://clips-media-assets2.twitch.tv/CojARo7Z8FNoUSkKOvSygw/39441953669-offset-1904.mp4",
-    "https://clips-media-assets2.twitch.tv/q1oaLv3pNkd3Q2je8O-GzQ/AT-cm%7Cq1oaLv3pNkd3Q2je8O-GzQ.mp4",
-    "https://clips-media-assets2.twitch.tv/DhKZS-z65ihbYIs7B1Trnw/AT-cm%7CDhKZS-z65ihbYIs7B1Trnw.mp4",
     "https://clips-media-assets2.twitch.tv/dyswnEv7AMIhlnQPo7GRhQ/AT-cm%7CdyswnEv7AMIhlnQPo7GRhQ.mp4",
-    "https://clips-media-assets2.twitch.tv/z4SyZDQa_5DOF3Db92oBaQ/39448902037-offset-4976.mp4",
-    "https://clips-media-assets2.twitch.tv/d2ffGxHTL-fYHbhgsKDJrw/AT-cm%7Cd2ffGxHTL-fYHbhgsKDJrw.mp4",
-    "https://clips-media-assets2.twitch.tv/XGD7E3xJ7lOwCXR5yCtiOg/AT-cm%7CXGD7E3xJ7lOwCXR5yCtiOg.mp4",
-    "https://clips-media-assets2.twitch.tv/Leb5sZ4wEq-RM7fAC9oftw/AT-cm%7CLeb5sZ4wEq-RM7fAC9oftw.mp4",
-    "https://clips-media-assets2.twitch.tv/W-dSMFO5MZW3ENuxv-aZMw/AT-cm%7CW-dSMFO5MZW3ENuxv-aZMw.mp4",
-    //"https://clips-media-assets2.twitch.tv/1eknT3u-axiypQjUiMUu2w/AT-cm%7C1eknT3u-axiypQjUiMUu2w.mp4",
-    "https://clips-media-assets2.twitch.tv/XXbOFIG_tUDqpKuR8wT5lg/39441953669-offset-14924.mp4",
-    "https://clips-media-assets2.twitch.tv/z9lR587i4XPvxiUKfteqZg/AT-cm%7Cz9lR587i4XPvxiUKfteqZg.mp4",
-    "https://clips-media-assets2.twitch.tv/fEdYcH4ZAYWVNDsK_01zAA/39442671845-offset-9156.mp4",
-    "https://clips-media-assets2.twitch.tv/Ptp5V00OJFFFqW0yt7eiAg/AT-cm%7CPtp5V00OJFFFqW0yt7eiAg.mp4",
+    "https://clips-media-assets2.twitch.tv/LkqdoaaLlpdlTbpBqZMBVQ/vod-1778025958-offset-28394.mp4",
+    "https://clips-media-assets2.twitch.tv/1eknT3u-axiypQjUiMUu2w/AT-cm%7C1eknT3u-axiypQjUiMUu2w.mp4",
+    "https://clips-media-assets2.twitch.tv/uvXL9akOhdVDRW333lPvEA/AT-cm%7CuvXL9akOhdVDRW333lPvEA.mp4",
+    "https://clips-media-assets2.twitch.tv/GUvuj33j0iuEYAUWvjppkQ/39442963445-offset-25164.mp4",
+    "https://clips-media-assets2.twitch.tv/q1oaLv3pNkd3Q2je8O-GzQ/AT-cm%7Cq1oaLv3pNkd3Q2je8O-GzQ.mp4",
     "https://clips-media-assets2.twitch.tv/nVn1LEHwAOObGNuYCOhAhw/AT-cm%7CnVn1LEHwAOObGNuYCOhAhw.mp4",
-    "https://clips-media-assets2.twitch.tv/MNyURB8Oe0hHEgfNyss13Q/39444328549-offset-30886.mp4",
-    "https://clips-media-assets2.twitch.tv/LkqdoaaLlpdlTbpBqZMBVQ/vod-1778025958-offset-28394.mp4"
+    "https://clips-media-assets2.twitch.tv/z4SyZDQa_5DOF3Db92oBaQ/39448902037-offset-4976.mp4"
+
 };
 
 static void DownloadUrls(List<string> listaUrl, List<string> Title, List<string> StreamerName)
 {
     var driver = new ChromeDriver();
 
-    string url = "https://streamscharts.com/clips?time=7-days&language=pl";
+    string url = "https://streamscharts.com/clips?time=7-days";
 
     driver.Navigate().GoToUrl(url);
 
     WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
     driver.Manage().Window.Maximize();
 
-    System.Threading.Thread.Sleep(1200);
+    System.Threading.Thread.Sleep(1300);
     IReadOnlyCollection<IWebElement> clips = wait.Until(i => i.FindElements(By.ClassName("clip-container")));
+    try
+    {
+        IReadOnlyCollection<IWebElement> Recap = wait.Until(i => i.FindElements(By.XPath("/html/body/main/div[2]/div/section/div/div/div/button")));
+        Recap.First().Click();
+    }
+    catch { }
+    
     int z = 0;
     foreach (IWebElement element in clips)
     {
-        if (z > 11)
+        if (z %4 ==0)
         {
             Actions actions = new Actions(driver);
-            actions.ScrollByAmount(0, 200);
+            actions.ScrollByAmount(0, 100);
             actions.Perform();
         }
-        System.Threading.Thread.Sleep(1000);
+        System.Threading.Thread.Sleep(1300);
         element.Click();
-        System.Threading.Thread.Sleep(1000);
-        IReadOnlyCollection<IWebElement> Dbtn = wait.Until(i => i.FindElements(By.XPath("/html/body/main/div[3]/div/div[3]/div/div[2]/div[1]/div/a")));
-        IReadOnlyCollection<IWebElement> DStreamerName = wait.Until(i => i.FindElements(By.XPath($"/html/body/main/div[3]/div/div[2]/div[1]/div[1]/div[3]/button[{z + 1}]/div[2]/div")));
-        IReadOnlyCollection<IWebElement> DTitle = wait.Until(i => i.FindElements(By.XPath($"/html/body/main/div[3]/div/div[2]/div[1]/div[1]/div[3]/button[{z + 1}]/div[3]/div[2]/div/div[1]")));
+        System.Threading.Thread.Sleep(1500);
+        IReadOnlyCollection<IWebElement> Dbtn = wait.Until(i => i.FindElements(By.XPath("/html/body/main/div[4]/div/div[3]/div/div[2]/div[1]/div/a")));
+        IReadOnlyCollection<IWebElement> DStreamerName = wait.Until(i => i.FindElements(By.XPath($"/html/body/main/div[4]/div/div[2]/div[1]/div[1]/div[3]/button[{z + 1}]/div[2]/div")));
+        IReadOnlyCollection<IWebElement> DTitle = wait.Until(i => i.FindElements(By.XPath($"/html/body/main/div[4]/div/div[2]/div[1]/div[1]/div[3]/button[{z + 1}]/div[3]/div[2]/div/div[1]")));
 
-        listaUrl.Add(Dbtn.First().GetAttribute("href"));
+        if (DStreamerName.First().Text != "AmadeuszFerrari") listaUrl.Add(Dbtn.First().GetAttribute("href"));
+        else listaUrl.Add("AMADI");
         StreamerName.Add(DStreamerName.First().Text);
         Title.Add(DTitle.First().Text);
 
@@ -99,7 +100,7 @@ static void DownloadAndUpload(List<string> ListaUrl, List<string> Title, List<st
 
     foreach (var x in ListaUrl)
     {
-        if (!TempListaUrl.Contains(x))
+        if (!TempListaUrl.Contains(x) && StreamerName[i] != "AmadeuszFerrari")
         {
             using (var client = new WebClient())
             {
@@ -109,8 +110,7 @@ static void DownloadAndUpload(List<string> ListaUrl, List<string> Title, List<st
 
                 ChangeResolution($"clip{i}.mp4");
             }
-            //new UploadVideo($"{StreamerName[i]} - {Title[i]} #shorts #shoty #irl", $"Resclip{i}.mp4").Run().Wait();
-            new UploadVideo($"{StreamerName[i]} - {Title[i]} #shorts #shoty #irl", $"Resclip{i}.mp4").Run().Wait();
+           new UploadVideo($"{StreamerName[i]} - {Title[i]} #shorts #twitchshorts #twitch #irl #xqc #pokimane #nmplol", $"Resclip{i}.mp4").Run().Wait();
 
             break;
         }
@@ -122,9 +122,12 @@ Stopwatch Stopwatch = Stopwatch.StartNew();
 
 while (true)
 {
-    if ((Stopwatch.Elapsed.TotalMilliseconds % 1000 == 0)) Console.WriteLine(Stopwatch.Elapsed);
+    if ((Stopwatch.Elapsed.TotalMilliseconds % 1000 == 0))
+        Console.WriteLine("{0,3}\b\b\b", Stopwatch.Elapsed);
 
-    if (Stopwatch.Elapsed.Seconds >= 4)
+        
+
+    if (Stopwatch.Elapsed.Hours >= 4)
     {
         DownloadAndUpload(ListaUrl, Title, StreamerName, TempListaUrl, i);
 
@@ -143,6 +146,11 @@ public class UploadVideo
         FilePath = filePath;
     }
 
+    static string Truncate(string value, int maxLength)
+    {
+        if (string.IsNullOrEmpty(value)) return value;
+        return value.Length <= maxLength ? value : value.Substring(0, maxLength);
+    }
     public async Task Run()
     {
         UserCredential credential;
@@ -164,9 +172,9 @@ public class UploadVideo
 
         var video = new Video();
         video.Snippet = new VideoSnippet();
-        video.Snippet.Title = Title;
+        video.Snippet.Title = Truncate(Title,70);
         video.Snippet.Description = "";
-        video.Snippet.Tags = new string[] { };
+        //video.Snippet.Tags = new string[] { };
         video.Snippet.CategoryId = "22"; // See https://developers.google.com/youtube/v3/docs/videoCategories/list
         video.Status = new VideoStatus();
         video.Status.PrivacyStatus = "public"; // or "private" or "public"
@@ -201,3 +209,4 @@ public class UploadVideo
         Console.WriteLine("Video id '{0}' was successfully uploaded.", video.Id);
     }
 }
+
