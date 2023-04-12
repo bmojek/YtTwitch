@@ -19,18 +19,26 @@ List<string> StreamerName = new List<string>();
 
 List<string> TempListaUrl = new List<string>()
 {
-
-    "https://clips-media-assets2.twitch.tv/1nIkfNbQ6GhHXhkKvDvlug/AT-cm%7C1nIkfNbQ6GhHXhkKvDvlug.mp4",
-    "https://clips-media-assets2.twitch.tv/OVfA-WXzZUt7hR6gwShoyg/AT-cm%7COVfA-WXzZUt7hR6gwShoyg.mp4",
-    "https://clips-media-assets2.twitch.tv/RKq3GRvAXr7rFAGx9XunVA/AT-cm%7CRKq3GRvAXr7rFAGx9XunVA.mp4",
-    "https://clips-media-assets2.twitch.tv/dyswnEv7AMIhlnQPo7GRhQ/AT-cm%7CdyswnEv7AMIhlnQPo7GRhQ.mp4",
-    "https://clips-media-assets2.twitch.tv/LkqdoaaLlpdlTbpBqZMBVQ/vod-1778025958-offset-28394.mp4",
-    "https://clips-media-assets2.twitch.tv/1eknT3u-axiypQjUiMUu2w/AT-cm%7C1eknT3u-axiypQjUiMUu2w.mp4",
-    "https://clips-media-assets2.twitch.tv/uvXL9akOhdVDRW333lPvEA/AT-cm%7CuvXL9akOhdVDRW333lPvEA.mp4",
-    "https://clips-media-assets2.twitch.tv/GUvuj33j0iuEYAUWvjppkQ/39442963445-offset-25164.mp4",
-    "https://clips-media-assets2.twitch.tv/q1oaLv3pNkd3Q2je8O-GzQ/AT-cm%7Cq1oaLv3pNkd3Q2je8O-GzQ.mp4",
-    "https://clips-media-assets2.twitch.tv/nVn1LEHwAOObGNuYCOhAhw/AT-cm%7CnVn1LEHwAOObGNuYCOhAhw.mp4",
-    "https://clips-media-assets2.twitch.tv/z4SyZDQa_5DOF3Db92oBaQ/39448902037-offset-4976.mp4"
+    "https://clips-media-assets2.twitch.tv/cYi0O1Ps5Q4eHgQeDVruHw/AT-cm%7CcYi0O1Ps5Q4eHgQeDVruHw.mp4",
+    "https://clips-media-assets2.twitch.tv/z9vF5BuLzYXpdO9K8z0M2A/39476779349-offset-11752.mp4",
+    "https://clips-media-assets2.twitch.tv/Rp1lFD4JxOuQKf-qdea98g/AT-cm%7CRp1lFD4JxOuQKf-qdea98g.mp4",
+    "https://clips-media-assets2.twitch.tv/L83SToGWbJzb8E46K8Bwyw/39476779349-offset-11292.mp4",
+    "https://clips-media-assets2.twitch.tv/Mimmou44Ro2CK1t5AOd9yQ/39476779349-offset-10800.mp4",
+    "https://clips-media-assets2.twitch.tv/voFJxEH4oI99jPitGh_BZA/39473284901-offset-4172.mp4",
+    "https://clips-media-assets2.twitch.tv/8g9_9-sJ6TJ9Eww9xInvtg/39476779349-offset-14316.mp4",
+    "https://clips-media-assets2.twitch.tv/LmtmdT_dj9rCDW2eVCRfWg/39476779349-offset-15082.mp4",
+    "https://clips-media-assets2.twitch.tv/doo8S1flFk43kuCC2adp4A/AT-cm%7Cdoo8S1flFk43kuCC2adp4A.mp4",
+    "https://clips-media-assets2.twitch.tv/icsjizMPcbTtkW2_G5M3zg/39485365685-offset-3702.mp4",
+    "https://clips-media-assets2.twitch.tv/i2Mj6J9FVXdKDCF0owZynQ/AT-cm%7Ci2Mj6J9FVXdKDCF0owZynQ.mp4",
+    "https://clips-media-assets2.twitch.tv/ANZTtjtlZtdWs7s021s-6w/AT-cm%7CANZTtjtlZtdWs7s021s-6w.mp4",
+    "https://clips-media-assets2.twitch.tv/n0JY0Za42er9HEz_Azdhug/39476779349-offset-12222.mp4",
+    "https://clips-media-assets2.twitch.tv/ubIoy-GeHQjKkcfKcOQUpQ/39473856597-offset-3766.mp4",
+    "https://clips-media-assets2.twitch.tv/Ql9EPfCG9DZ9NxJLOVDhfA/40629800936-offset-1926.mp4",
+    "https://clips-media-assets2.twitch.tv/lo0xXPnJRvvU2IM6PCkdlA/AT-cm%7Clo0xXPnJRvvU2IM6PCkdlA.mp4",
+    "https://clips-media-assets2.twitch.tv/ZXtL-NmeQlf_I0R2KExDIA/AT-cm%7CZXtL-NmeQlf_I0R2KExDIA.mp4",
+    "https://clips-media-assets2.twitch.tv/ls_g8R6MntNy5x_byv1gFw/AT-cm%7Cls_g8R6MntNy5x_byv1gFw.mp4",
+    "https://clips-media-assets2.twitch.tv/s6IjBy8UEkvgu4C6cb91Jw/39485365685-offset-3612.mp4",
+    "https://clips-media-assets2.twitch.tv/tZmt7pjg--UZd5CdzlX1Qw/39476127589-offset-10220.mp4"
 
 };
 
@@ -38,7 +46,7 @@ static void DownloadUrls(List<string> listaUrl, List<string> Title, List<string>
 {
     var driver = new ChromeDriver();
 
-    string url = "https://streamscharts.com/clips?time=7-days";
+    string url = "https://streamscharts.com/clips?time=7-days&language=pl";
 
     driver.Navigate().GoToUrl(url);
 
@@ -110,7 +118,7 @@ static void DownloadAndUpload(List<string> ListaUrl, List<string> Title, List<st
 
                 ChangeResolution($"clip{i}.mp4");
             }
-           new UploadVideo($"{StreamerName[i]} - {Title[i]} #shorts #twitchshorts #twitch #irl #xqc #pokimane #nmplol", $"Resclip{i}.mp4").Run().Wait();
+           new UploadVideo($"{StreamerName[i]} - {Title[i]} #shorts #twitchshorts #twitchshoty #twitch #irl #xayoo #franio", $"Resclip{i}.mp4").Run().Wait();
 
             break;
         }
@@ -127,7 +135,7 @@ while (true)
 
         
 
-    if (Stopwatch.Elapsed.Hours >= 4)
+    if (Stopwatch.Elapsed.Seconds >= 4)
     {
         DownloadAndUpload(ListaUrl, Title, StreamerName, TempListaUrl, i);
 
@@ -172,7 +180,7 @@ public class UploadVideo
 
         var video = new Video();
         video.Snippet = new VideoSnippet();
-        video.Snippet.Title = Truncate(Title,70);
+        video.Snippet.Title = Truncate(Title,100);
         video.Snippet.Description = "";
         //video.Snippet.Tags = new string[] { };
         video.Snippet.CategoryId = "22"; // See https://developers.google.com/youtube/v3/docs/videoCategories/list
