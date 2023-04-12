@@ -135,7 +135,7 @@ while (true)
 
         
 
-    if (Stopwatch.Elapsed.Seconds >= 4)
+    if (Stopwatch.Elapsed.Hours >= 4)
     {
         DownloadAndUpload(ListaUrl, Title, StreamerName, TempListaUrl, i);
 
