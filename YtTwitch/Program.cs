@@ -19,26 +19,7 @@ List<string> StreamerName = new List<string>();
 
 List<string> TempListaUrl = new List<string>()
 {
-    "https://clips-media-assets2.twitch.tv/cYi0O1Ps5Q4eHgQeDVruHw/AT-cm%7CcYi0O1Ps5Q4eHgQeDVruHw.mp4",
-    "https://clips-media-assets2.twitch.tv/z9vF5BuLzYXpdO9K8z0M2A/39476779349-offset-11752.mp4",
-    "https://clips-media-assets2.twitch.tv/Rp1lFD4JxOuQKf-qdea98g/AT-cm%7CRp1lFD4JxOuQKf-qdea98g.mp4",
-    "https://clips-media-assets2.twitch.tv/L83SToGWbJzb8E46K8Bwyw/39476779349-offset-11292.mp4",
-    "https://clips-media-assets2.twitch.tv/Mimmou44Ro2CK1t5AOd9yQ/39476779349-offset-10800.mp4",
-    "https://clips-media-assets2.twitch.tv/voFJxEH4oI99jPitGh_BZA/39473284901-offset-4172.mp4",
-    "https://clips-media-assets2.twitch.tv/8g9_9-sJ6TJ9Eww9xInvtg/39476779349-offset-14316.mp4",
-    "https://clips-media-assets2.twitch.tv/LmtmdT_dj9rCDW2eVCRfWg/39476779349-offset-15082.mp4",
-    "https://clips-media-assets2.twitch.tv/doo8S1flFk43kuCC2adp4A/AT-cm%7Cdoo8S1flFk43kuCC2adp4A.mp4",
-    "https://clips-media-assets2.twitch.tv/icsjizMPcbTtkW2_G5M3zg/39485365685-offset-3702.mp4",
-    "https://clips-media-assets2.twitch.tv/i2Mj6J9FVXdKDCF0owZynQ/AT-cm%7Ci2Mj6J9FVXdKDCF0owZynQ.mp4",
-    "https://clips-media-assets2.twitch.tv/ANZTtjtlZtdWs7s021s-6w/AT-cm%7CANZTtjtlZtdWs7s021s-6w.mp4",
-    "https://clips-media-assets2.twitch.tv/n0JY0Za42er9HEz_Azdhug/39476779349-offset-12222.mp4",
-    "https://clips-media-assets2.twitch.tv/ubIoy-GeHQjKkcfKcOQUpQ/39473856597-offset-3766.mp4",
-    "https://clips-media-assets2.twitch.tv/Ql9EPfCG9DZ9NxJLOVDhfA/40629800936-offset-1926.mp4",
-    "https://clips-media-assets2.twitch.tv/lo0xXPnJRvvU2IM6PCkdlA/AT-cm%7Clo0xXPnJRvvU2IM6PCkdlA.mp4",
-    "https://clips-media-assets2.twitch.tv/ZXtL-NmeQlf_I0R2KExDIA/AT-cm%7CZXtL-NmeQlf_I0R2KExDIA.mp4",
-    "https://clips-media-assets2.twitch.tv/ls_g8R6MntNy5x_byv1gFw/AT-cm%7Cls_g8R6MntNy5x_byv1gFw.mp4",
-    "https://clips-media-assets2.twitch.tv/s6IjBy8UEkvgu4C6cb91Jw/39485365685-offset-3612.mp4",
-    "https://clips-media-assets2.twitch.tv/tZmt7pjg--UZd5CdzlX1Qw/39476127589-offset-10220.mp4"
+    "https://clips-media-assets2.twitch.tv/9bSZhuJKmTcWYu95_DHMzg/AT-cm%7C9bSZhuJKmTcWYu95_DHMzg.mp4"
 
 };
 
@@ -70,6 +51,17 @@ static void DownloadUrls(List<string> listaUrl, List<string> Title, List<string>
             Actions actions = new Actions(driver);
             actions.ScrollByAmount(0, 100);
             actions.Perform();
+            if (z == 4)
+            {
+                try
+                {
+                    IReadOnlyCollection<IWebElement> Recap2 = wait.Until(i => i.FindElements(By.XPath("/html/body/main/div[2]/div/section/div/div/div/button")));
+                    Recap2.First().Click();
+                }
+                catch { }
+                
+            }
+            
         }
         System.Threading.Thread.Sleep(1300);
         element.Click();
@@ -135,7 +127,7 @@ while (true)
 
         
 
-    if (Stopwatch.Elapsed.Hours >= 4)
+    if (Stopwatch.Elapsed.Seconds >= 4)
     {
         DownloadAndUpload(ListaUrl, Title, StreamerName, TempListaUrl, i);
 
